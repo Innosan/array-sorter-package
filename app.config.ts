@@ -1,5 +1,5 @@
 export default defineAppConfig({
-	appName: "Nuxt Template",
+	appName: "Array Sorter",
 
 	ui: {
 		primary: "red",

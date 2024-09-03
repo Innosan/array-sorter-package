@@ -4,6 +4,10 @@ const props = defineProps({
 		type: String,
 		required: true,
 	},
+	spacing: {
+		type: String,
+		default: "gap-1",
+	},
 });
 </script>
 

@@ -1,52 +1,88 @@
 <script setup lang="ts">
-import { useAnimeStore } from "~/stores/anime";
-import ImageCard from "~/components/layout/ImageCard.vue";
+import { arrayTabs } from "~/utils/navigation";
+import { CardSizes } from "~/types/ui/CardSizes";
+import { type ArrayItem } from "~/types/data/ArrayItem";
+
 const toast = useToast();
 
-const animeStore = useAnimeStore();
-animeStore.getArts(false);
+const selectedTab = ref(arrayTabs[0].id);
 
-const name = ref("");
+const arrays: ArrayItem[] = ref([
+	{
+		id: 1,
+		title: "Array 1",
+		description: "This is the first array",
+		unsorted: [5, 4, 3, 2, 1],
+		sorted: [5, 4, 3, 2, 1],
+	},
+	{
+		id: 2,
+		title: "Array 2",
+		description: "This is the second array",
+		unsorted: [1, 2, 3, 4, 5],
+		sorted: [1, 2, 3, 4, 5],
+	},
+	{
+		id: 3,
+		title: "Array 3",
+		description: "This is the third array",
+		unsorted: [3, 2, 1, 5, 4],
+		sorted: [3, 2, 1, 5, 4],
+	},
+]);
 </script>
 
 <template>
-	<PageSection
-		title="Welcome to the homepage"
-		icon="i-heroicons-home-solid"
-		:is-divided="false"
-	>
-		<TitledBlock title="">
-			<Grid v-auto-animate>
-				<ImageCard
-					v-for="image in animeStore.nekoArts"
-					:key="image.url"
-					:alt="image.artist_name"
-					:url="image.url"
-				>
-					<div class="flex items-center gap-1">
-						<NuxtLink
-							class="font-bold text-lg"
-							:to="image.artist_href"
-							:external="true"
-							target="_blank"
-							>{{ image.artist_name }}</NuxtLink
-						>
-						•
-						<NuxtLink
-							:to="image.source_url"
-							:external="true"
-							target="_blank"
-							>Source</NuxtLink
-						>
-					</div>
-				</ImageCard>
-				<UButton
-					label="Load more"
-					@click="animeStore.getArts(true)"
-					icon="i-heroicons-chevron-down"
-					class="col-span-full"
-				/>
-			</Grid>
+	<PageSection title="All the arrays, all the time, all the way" icon="i-heroicons-home-solid" :is-divided="false">
+		<TitledBlock title="Arrays">
+			<div class="flex flex-col gap-4">
+				<UButtonGroup size="xs">
+					<UButton
+						v-for="tab in arrayTabs"
+						@click="selectedTab = tab.id"
+						:color="selectedTab === tab.id ? 'primary' : 'gray'"
+						:label="tab.label"
+						:icon="tab.icon"
+					/>
+				</UButtonGroup>
+
+				<Grid>
+					<UCard v-for="array in arrays" :ui="CardSizes.sm">
+						<template #header>
+							<div class="flex flex-col">
+								<p class="font-bold text-xl">{{ array.title }}</p>
+								<p class="opacity-70 text-sm">{{ array.description }}</p>
+							</div>
+						</template>
+						<div class="flex flex-col gap-4">
+							<TitledBlock title="Unsorted state">
+								<div class="flex flex-wrap gap-2">
+									<span v-for="n in array.sorted" class="p-1 px-3 ring-1 ring-gray-800 rounded-lg">{{
+										n
+									}}</span>
+								</div>
+							</TitledBlock>
+							<TitledBlock title="Sorted state">
+								<div class="flex flex-wrap gap-2" v-auto-animate>
+									<span
+										v-for="n in array.unsorted"
+										:key="n"
+										class="p-1 px-3 ring-1 ring-gray-800 rounded-lg"
+										>{{ n }}</span
+									>
+								</div>
+							</TitledBlock>
+						</div>
+						<template #footer>
+							<div class="flex place-self-end gap-4">
+								<UButton label="Sort" color="green" @click="array.unsorted.sort((a, b) => a - b)" />
+								<UButton label="Delete" color="gray" />
+								<UButton label="Edit" color="gray" />
+							</div>
+						</template>
+					</UCard>
+				</Grid>
+			</div>
 		</TitledBlock>
 	</PageSection>
 </template>
