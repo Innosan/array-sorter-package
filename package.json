@@ -19,6 +19,8 @@
   "dependencies": {
     "@formkit/auto-animate": "^0.8.1",
     "@nuxt/ui": "^2.12.0",
-    "@pinia/nuxt": "^0.5.1"
+    "@pinia/nuxt": "^0.5.1",
+    "@types/pg": "^8.11.8",
+    "pg": "^8.12.0"
   }
 }

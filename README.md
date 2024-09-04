@@ -13,38 +13,25 @@ This project is a Nuxt 3 application template with TypeScript support. It includ
 		- `css/`: Contains CSS files.
 		- `scss/`: Contains SCSS files.
 - `components/`: Contains Vue components.
-	- `layout/section/`: Components for layout sections.
-		- `PageSection.vue`: Component for page sections.
-		- `SectionTitle.vue`: Component for section titles.
+	- `layout/`: Components for layout.
 	- `navigation/`: Components for navigation.
-		- `BurgerNavigation.vue`: Component for burger menu navigation.
-		- `IconedNavigationLink.vue`: Component for navigation links with icons.
-		- `SidebarNavigation.vue`: Component for sidebar navigation.
-		- `TopNavigation.vue`: Component for top navigation.
 	- `theming/`: Components for theming.
 		- `ColorSwitch.vue`: Component for switching colors.
 		- `ThemeSwitch.vue`: Component for switching themes.
 	- `utility/`: Utility components.
-		- `Header.vue`: Header component.
 - `pages/`: Contains page components.
-	- `about.vue`: About page.
-	- `help.vue`: Help page.
 	- `index.vue`: Home page.
 - `public/`: Contains public assets.
-	- `favicon.ico`: Favicon for the application.
 	- `fonts/`: Contains font files.
-		- `Manrope-VariableFont_wght.ttf`: Manrope font.
 	- `images/`: Contains image files.
-		- `delete.ts`: Example image file.
 - `server/`: Contains server-side code.
+	- `api/`: API routes.
+    - `utils/`: Utility functions.
 	- `tsconfig.json`: TypeScript configuration for the server.
 - `stores/`: Contains Pinia stores.
-	- `settings.ts`: Store for managing application settings.
 - `types/`: Contains TypeScript type definitions.
 	- `ui/`: UI-related types.
-		- `SectionSizes.ts`: Type definitions for section sizes.
 	- `utility/`: Utility types.
-		- `NavigationLink.ts`: Type definitions for navigation links.
 - `utils/`: Contains utility functions.
 	- `navigation.ts`: Utility functions for navigation.
 
@@ -71,6 +58,10 @@ This file contains the settings store which manages the application's settings, 
 
 Make sure to install the dependencies:
 
+## Server-side
+All server-side code is located in the `server` directory. The server is built using Nitro, part of the Nuxt 3 framework.
+`/server/api` contains the API routes (like get, post, etc.), and `/server/utils` contains utility functions (database connection, other utility functions).
+
 ```bash
 # npm
 npm install
@@ -90,6 +81,12 @@ yarn install
 # bun
 bun install
 ```
+
+## Development
+# Before running the project, make sure to create a `.env` file in the root directory with the following content:
+- `NITRO_DATABASE_URL="your_database_url"`
+
+```bash
 
 ## Deployment
 
