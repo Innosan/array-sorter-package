@@ -4,25 +4,31 @@ export const navigation: NavigationLink[] = [
 	{
 		id: 1,
 		to: "/",
-		label: "Arrays",
+		label: "Массивы",
 		icon: "i-heroicons-squares-2x2-16-solid",
+	},
+	{
+		id: 2,
+		to: "/faq",
+		label: "FAQ",
+		icon: "i-heroicons-question-mark-circle-16-solid",
 	},
 ];
 
 export const arrayTabs: NavigationLink[] = [
 	{
 		id: 1,
-		label: "All",
+		label: "Все",
 		icon: "i-heroicons-rectangle-stack-solid",
 	},
 	{
 		id: 2,
-		label: "Sorted",
+		label: "Отсортированные",
 		icon: "i-heroicons-squares-2x2-solid",
 	},
 	{
 		id: 3,
-		label: "Unsorted",
+		label: "Неотсортированные",
 		icon: "i-heroicons-rectangle-group-solid",
 	},
 ];

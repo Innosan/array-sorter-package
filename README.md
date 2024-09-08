@@ -1,10 +1,12 @@
-# Nuxt Template
+# RPS Third task built with Nuxt 3 and Nitro
 
-This project is a Nuxt 3 application template with TypeScript support. It includes a basic navigation setup and some utility components.
+This is web app for array manipulation and sorting. All arrays should be stored in the database and can be manipulated using the API.
+Main features:
+- Array CRUD
+- Get all arrays
+- Sort an array with a specific algorithm
 
 # Project Structure
-
-This project is a Nuxt 3 application template with TypeScript support. It includes a basic navigation setup, some utility components, and state management using Pinia.
 
 ## Folder Structure
 
@@ -54,13 +56,14 @@ The project is structured to separate concerns and improve maintainability:
 
 This file contains the settings store which manages the application's settings, such as the primary color. It uses Pinia for state management.
 
-## Setup
-
-Make sure to install the dependencies:
-
 ## Server-side
 All server-side code is located in the `server` directory. The server is built using Nitro, part of the Nuxt 3 framework.
 `/server/api` contains the API routes (like get, post, etc.), and `/server/utils` contains utility functions (database connection, other utility functions).
+
+# Getting ready to run the project
+## Setup
+
+Make sure to install the dependencies:
 
 ```bash
 # npm
@@ -111,5 +114,3 @@ yarn dev
 ```
 
 Check out the [Deployment guide](https://nuxt.com/docs/getting-started/deployment) for more information.  
-License
-This project is licensed under the MIT License

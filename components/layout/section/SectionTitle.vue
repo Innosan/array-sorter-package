@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
-import { type SectionSize, SectionSizes } from "~/types/ui/SectionSizes";
+import { type SectionSize } from "~/types/ui/SectionSizes";
 
 const props = defineProps({
 	title: {

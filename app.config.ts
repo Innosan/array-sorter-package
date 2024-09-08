@@ -1,5 +1,5 @@
 export default defineAppConfig({
-	appName: "Array Sorter",
+	appName: "Массивный сортировщик массивов",
 
 	ui: {
 		primary: "red",
