@@ -1,0 +1,27 @@
+{
+    "name": "@innosan/array-sorter",
+    "version": "1.1.0",
+    "description": "A module to sort arrays with merge sort algorithm, presented with readable results.",
+    "main": "dist/index.js",
+    "types": "dist/types/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "test": "jest"
+    },
+    "keywords": [
+        "sort",
+        "array"
+    ],
+    "author": "innosan",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/jest": "^29.5.13",
+        "@types/node": "^22.5.4",
+        "jest": "^29.7.0",
+        "ts-jest": "^29.2.5",
+        "typescript": "^5.6.2"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
