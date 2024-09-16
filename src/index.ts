@@ -17,7 +17,7 @@ export const mergeSort = (arr: number[], order: SortOrder = SortOrder.ASC): Sort
     }
 
     // Start the timer
-    const startTime = process.hrtime();
+    const startTime = process.hrtime.bigint();
 
     /**
      * Merge two sorted arrays into a single sorted array
@@ -56,8 +56,8 @@ export const mergeSort = (arr: number[], order: SortOrder = SortOrder.ASC): Sort
     // Recursively merge the sorted halves until the base case is reached
     const sortedArray = merge(mergeSort(left, order).sortedArray, mergeSort(right, order).sortedArray);
 
-    const endTime = process.hrtime(startTime); // End the timer
-    const time = `${endTime[0]}s ${endTime[1] / 1000000}ms`; // Calculate the elapsed time
+    const endTime = process.hrtime.bigint(); // End the timer
+    const time = `${(parseInt(endTime.toString()) - parseInt(startTime.toString())) / 1e9}s`; // Calculate the time taken (1e9 ns = 1s)
 
     return { sortedArray, time };
 };
