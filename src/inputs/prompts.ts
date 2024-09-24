@@ -27,10 +27,31 @@ export const exportToFile = async (data: number[]) => {
     const exportToFile = await prompt("Do you want to export the sorted array to a file? (yes/no): ", isValidYesNo);
 
     if (exportToFile.toLowerCase() === "yes") {
-        const fileName = await prompt("Enter the file name: ");
-        fs.writeFileSync(fileName, JSON.stringify(data));
+        while (true) {
+            const fileName = await prompt("Enter the file name: ");
+            if (!fileName.endsWith(".txt")) {
+                console.log("File name must have a '.txt' extension.");
+                continue;
+            }
 
-        console.log(`Array exported to ${fileName}`);
+            if (fs.existsSync(fileName)) {
+                const overwrite = await prompt(
+                    "The file already exists. Do you want to overwrite it? (yes/no): ",
+                    isValidYesNo,
+                );
+                if (overwrite.toLowerCase() === "no") {
+                    continue;
+                }
+            }
+
+            try {
+                fs.writeFileSync(fileName, JSON.stringify(data));
+                console.log("Array exported to", fileName);
+                break;
+            } catch (error) {
+                console.error("Error exporting file:", error);
+            }
+        }
     } else {
         return;
     }

@@ -46,4 +46,11 @@ describe("mergeSort", () => {
         expect(result.sortedArray.length).toBe(10);
         expect(result.sortedArray).toEqual(result.sortedArray.slice().sort((a, b) => a - b));
     });
+
+    it("should sort the descending array in ascending order", () => {
+        const arr = [9, 8, 7, 6, 5, 4, 3, 2];
+        const result = mergeSort(arr, SortOrder.ASC);
+
+        expect(result.sortedArray).toEqual([2, 3, 4, 5, 6, 7, 8, 9]);
+    });
 });

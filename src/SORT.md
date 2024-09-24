@@ -57,7 +57,7 @@ function merge(left, right, order)
 
     return result
 ```
-## Визуализация <strike> + арбитраж + твой папа + мой папа</strike>
+## Визуализация <strike> + арбитраж + твой папа + мой папа </strike>
 <div style="text-align: center">
 <img alt="Merge sort animation" src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Merge-sort-example-300px.gif" width="350"/>
 </div>
