@@ -13,17 +13,34 @@ export default defineNuxtConfig({
 	nitro: {
 		experimental: {
 			database: true,
+			openAPI: true,
 		},
 		database: {
 			default: {
 				connector: "postgresql",
-				url: "postgresql://postgres:4ev3R2Gether@localhost:5432/rps_arrays",
+			},
+		},
+		openAPI: {
+			meta: {
+				title: "My Awesome Project",
+				description: "This might become the next big thing.",
+				version: "1.0",
 			},
 		},
 	},
 
 	runtimeConfig: {
 		databaseUrl: "",
+		random: {
+			arrays: {
+				minLength: 5,
+				maxLength: 30,
+			},
+			numbers: {
+				min: -100,
+				max: 100,
+			},
+		},
 	},
 
 	css: ["~/assets/styles/main.css"],

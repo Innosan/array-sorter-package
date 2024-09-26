@@ -13,38 +13,35 @@ export interface Notification {
 	description?: string;
 }
 
-export const getToast = (
-	type: Toasts,
-	description?: string,
-): Partial<Notification> => {
+export const getToast = (type: Toasts, description?: string): Partial<Notification> => {
 	switch (type) {
 		case Toasts.SUCCESS:
 			return {
-				title: "Success!",
+				title: "Успешно!",
 				color: "green",
 				icon: "i-heroicons-check-circle",
 				description,
 			};
 		case Toasts.ERROR:
 			return {
-				title: "An error occurred!",
+				title: "Произошла ошибка!",
 				color: "red",
 				icon: "i-heroicons-x-circle",
-				description: description + ". Please try again.",
+				description: description + ". Пожалуйста, попробуйте еще раз.",
 			};
 		case Toasts.INFO:
 			return {
-				title: "New info!",
+				title: "Что-то новое!",
 				color: "blue",
 				icon: "i-heroicons-information-circle",
 				description,
 			};
 		default:
 			return {
-				title: "Notification",
+				title: "Уведомление",
 				color: "gray",
 				icon: "i-heroicons-bell",
-				description: "This is a notification.",
+				description: "Это уведомление.",
 			};
 	}
 };

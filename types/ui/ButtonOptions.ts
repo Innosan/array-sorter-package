@@ -4,6 +4,7 @@ export type ButtonOptions = {
 	variant: string;
 	color: string;
 	size: string;
+	className: string;
 };
 
 export const createButtonOptions = (options: Partial<ButtonOptions> = {}): ButtonOptions => {
@@ -13,5 +14,6 @@ export const createButtonOptions = (options: Partial<ButtonOptions> = {}): Butto
 		variant: options.variant || "solid",
 		color: options.color || "primary",
 		size: options.size || "md",
+		className: options.className || "",
 	};
 };

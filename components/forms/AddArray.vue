@@ -5,6 +5,7 @@ const newArrayItem = ref(null as number | null);
 const arrayToAdd = ref([]);
 
 const addToArray = () => {
+	if (!newArrayItem.value) return;
 	arrayToAdd.value.push(newArrayItem.value);
 	newArrayItem.value = null; // Reset the input field
 };
@@ -18,11 +19,13 @@ const handleKeyDown = (event: KeyboardEvent) => {
 function removeItemByIndex(toRemove) {
 	arrayToAdd.value.splice(toRemove, 1);
 }
+
+const arraysStore = useArraysStore();
 </script>
 
 <template>
 	<Modal
-		title="Your new array"
+		title="Новый массив"
 		:button-options="
 			createButtonOptions({
 				label: 'Добавить новый',
@@ -30,9 +33,22 @@ function removeItemByIndex(toRemove) {
 				size: 'xs',
 			})
 		"
+		:submit-button-options="
+			createButtonOptions({
+				label: 'Добавить',
+				icon: 'i-heroicons-squares-plus-solid',
+			})
+		"
+		:on-submit="
+			() => {
+				arraysStore.addArray(arrayToAdd);
+				arrayToAdd = [];
+			}
+		"
+		:is-submit-disabled="arrayToAdd.length === 0"
 	>
 		<div class="flex flex-col gap-4">
-			<UInput @keydown="handleKeyDown" v-model="newArrayItem" type="number" placeholder="Type in new item...">
+			<UInput @keydown="handleKeyDown" v-model="newArrayItem" type="number" placeholder="1337...">
 				<template #trailing>
 					<UKbd>Enter</UKbd>
 				</template>
@@ -40,12 +56,12 @@ function removeItemByIndex(toRemove) {
 
 			<UDivider />
 
-			<TitledBlock title="Current array">
+			<TitledBlock title="Что же находится в моей сумочке?">
 				<div
 					v-if="arrayToAdd.length !== 0"
 					class="flex flex-wrap gap-2 min-h-32 max-h-60 content-start overflow-y-scroll"
 				>
-					<UTooltip text="Click to remove" v-for="(n, index) in arrayToAdd" :key="index">
+					<UTooltip text="Нажмите, чтобы удалить" v-for="(n, index) in arrayToAdd" :key="index">
 						<UButton
 							@click="removeItemByIndex(index)"
 							color="gray"
@@ -55,10 +71,13 @@ function removeItemByIndex(toRemove) {
 						</UButton>
 					</UTooltip>
 				</div>
-				<UAlert v-else title="Массив пуст!" icon="i-heroicons-squares-plus-solid" />
+				<UAlert
+					v-else
+					title="Тут пусто!"
+					description="Добавьте что-нибудь."
+					icon="i-heroicons-archive-box-x-mark-solid"
+				/>
 			</TitledBlock>
 		</div>
 	</Modal>
 </template>
-
-<style scoped></style>

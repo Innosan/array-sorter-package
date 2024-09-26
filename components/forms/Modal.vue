@@ -2,8 +2,6 @@
 import { CardSizes } from "~/types/ui/CardSizes";
 import { type ButtonOptions, createButtonOptions } from "~/types/ui/ButtonOptions";
 
-const isOpened = ref(false);
-
 const props = defineProps({
 	title: {
 		type: String,
@@ -13,15 +11,30 @@ const props = defineProps({
 		type: Object as PropType<ButtonOptions>,
 		default: createButtonOptions({ label: "Open modal" }),
 	},
+	submitButtonOptions: {
+		type: Object as PropType<ButtonOptions>,
+		default: createButtonOptions({ label: "Save", variant: "solid", color: "green" }),
+	},
+	onSubmit: {
+		type: Function,
+		required: true,
+	},
+	isSubmitDisabled: {
+		type: Boolean,
+		default: false,
+	},
 });
+
+const isOpened = ref(false);
 </script>
 
 <template>
 	<UButton
-		:label="buttonOptions.label"
+		:label="buttonOptions.label !== ' ' ? buttonOptions.label : ''"
 		:icon="buttonOptions.icon"
 		:variant="buttonOptions.variant"
 		:color="buttonOptions.color"
+		class="justify-center"
 		:size="buttonOptions.size"
 		@click="isOpened = true"
 	/>
@@ -38,9 +51,22 @@ const props = defineProps({
 			<slot />
 			<slot name="body" />
 
-			<!-- Used for action buttons like save, etc., if they're existing -->
-			<template v-if="$slots.footer" #footer>
+			<template #footer>
 				<div class="flex gap-4 items-center">
+					<UButton
+						:label="submitButtonOptions.label"
+						:disabled="isSubmitDisabled"
+						:icon="submitButtonOptions.icon"
+						:variant="submitButtonOptions.variant"
+						:color="submitButtonOptions.color"
+						:size="submitButtonOptions.size"
+						@click="
+							() => {
+								onSubmit();
+								isOpened = false;
+							}
+						"
+					/>
 					<slot name="footer" />
 				</div>
 			</template>

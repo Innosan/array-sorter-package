@@ -1,5 +1,5 @@
 export default defineAppConfig({
-	appName: "Массивный сортировщик массивов",
+	appName: "МСМ",
 
 	ui: {
 		primary: "red",
