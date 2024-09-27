@@ -9,8 +9,8 @@ dependencies:
     specifier: ^0.8.1
     version: 0.8.2
   '@innosan/array-sorter':
-    specifier: ^1.1.0
-    version: 1.1.0
+    specifier: ^1.1.2
+    version: 1.1.2
   '@nuxt/ui':
     specifier: ^2.12.0
     version: 2.18.6(vite@5.4.8)(vue@3.5.9)
@@ -1070,8 +1070,8 @@ packages:
       vue: 3.5.9
     dev: false
 
-  /@innosan/array-sorter@1.1.0:
-    resolution: {integrity: sha512-2D/cPLZdqEle9W0Z3Mb8S/9+mDfeayQKj6E0mnMnm7/k9hHKt40TaowWfptizwi6BHk8fv0gUgoWO/aUUJhDkA==}
+  /@innosan/array-sorter@1.1.2:
+    resolution: {integrity: sha512-AvgQ4xu/oq88l9RVLTXa7s/Nr6dk3hPvK9Kfz76UoNWQwC2Swvpnb1pu6I+Ccm1T19ZcVmEFtqio0JtdtlBmiA==}
     dev: false
 
   /@ioredis/commands@1.2.0:

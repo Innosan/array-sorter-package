@@ -19,6 +19,10 @@ const filteredArrays = computed(() => {
 			return arrayStore.arrays;
 	}
 });
+
+const max = 5;
+const pageCount = 16;
+const currentPage = ref(1);
 </script>
 
 <template>
@@ -39,9 +43,9 @@ const filteredArrays = computed(() => {
 					<AddArray />
 				</div>
 
-				<Grid v-auto-animate>
+				<Grid>
 					<ArrayCard
-						v-for="array in filteredArrays.sort((a, b) => b.unsorted.length - a.unsorted.length)"
+						v-for="array in filteredArrays.slice((currentPage - 1) * pageCount, currentPage * pageCount)"
 						:key="array.id"
 						:array="array"
 						:on-delete="() => arrayStore.deleteArray(array.id)"
@@ -49,6 +53,7 @@ const filteredArrays = computed(() => {
 						:on-edit="(newArray) => arrayStore.updateArray(newArray, array.id)"
 					/>
 				</Grid>
+				<UPagination :max="max" :page-count="pageCount" :total="filteredArrays.length" v-model="currentPage" />
 				<UAlert
 					icon="i-heroicons-magnifying-glass-circle-solid"
 					v-if="filteredArrays.length === 0"
