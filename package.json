@@ -1,6 +1,6 @@
 {
     "name": "@innosan/array-sorter",
-    "version": "1.1.0",
+    "version": "1.1.2",
     "description": "A module to sort arrays with merge sort algorithm, presented with readable results.",
     "main": "dist/index.js",
     "types": "dist/types/index.d.ts",

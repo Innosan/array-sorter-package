@@ -13,7 +13,7 @@ export const mergeSort = (arr: number[], order: SortOrder = SortOrder.ASC): Sort
     let array = arr;
     // Base case: If the array has 0 or 1 elements, it is already sorted
     if (arr.length <= 1) {
-        return { sortedArray: arr, time: "0s" };
+        return { sortedArray: arr, time: { string: "0s", secs: 0, nanosecs: 0 } };
     }
 
     // Start the timer
@@ -57,7 +57,14 @@ export const mergeSort = (arr: number[], order: SortOrder = SortOrder.ASC): Sort
     const sortedArray = merge(mergeSort(left, order).sortedArray, mergeSort(right, order).sortedArray);
 
     const endTime = process.hrtime.bigint(); // End the timer
-    const time = `${(parseInt(endTime.toString()) - parseInt(startTime.toString())) / 1e9}s`; // Calculate the time taken (1e9 ns = 1s)
 
-    return { sortedArray, time };
+    const secs = (parseInt(endTime.toString()) - parseInt(startTime.toString())) / 1e9; // Calculate the time taken (1e9 ns = 1s)
+    const nano = parseInt(endTime.toString()) - parseInt(startTime.toString()); // Calculate the time taken (1e9 ns = 1s)
+
+    const totalTime = {
+        string: `${secs}s`,
+        nanosecs: nano,
+        secs: secs,
+    };
+    return { sortedArray, time: totalTime };
 };

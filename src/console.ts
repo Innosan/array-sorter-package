@@ -23,7 +23,9 @@ const main = async () => {
         const sortedArray = mergeSort(array, order);
 
         console.log("Sorted Array:", sortedArray.sortedArray);
-        console.log(`Time taken: ${sortedArray.time}`);
+        console.log(`Time taken (sec): ${sortedArray.time.secs}`);
+        console.log(`Time taken (nanosec): ${sortedArray.time.nanosecs}`);
+        console.log(`Time taken (string): ${sortedArray.time.string}`);
 
         await exportToFile(sortedArray.sortedArray);
 

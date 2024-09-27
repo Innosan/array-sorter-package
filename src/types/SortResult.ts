@@ -1,4 +1,8 @@
 export type SortResult = {
     sortedArray: number[];
-    time: string;
+    time: {
+        string: string;
+        nanosecs: number;
+        secs: number;
+    };
 };
